@@ -1,25 +1,3 @@
-use std::fs::File;
-use std::io::{self, prelude::*, BufReader};
-
-fn get_days_input(day: i32) -> io::Result<io::Lines<BufReader<File>>> {      
-    let filepath = format!("../../../problems/day{}/input1.txt", day);
-    let file = File::open(filepath)?;
-    Ok(BufReader::new(file).lines())
-}
-
-fn parse_text_to_numbers(text: io::Lines<BufReader<File>>) -> Vec<Vec<i32>>{
-    let numbers: Vec<Vec<i32>> = text
-        .map(|line| {
-            line.unwrap()
-                .split_whitespace()
-                .map(|num_str| num_str.parse().unwrap())
-                .collect()
-        })
-        .collect();
-
-    numbers
-}
-
 fn is_safe(numbers: &Vec<i32>) -> bool { 
     let mut is_initial_increasing = true;
 
@@ -60,10 +38,9 @@ fn is_safe_damp(numbers: &Vec<i32>) -> bool {
     false
 }
 
-
-fn main() {
-    let input = get_days_input(2).unwrap();
-    let reports = parse_text_to_numbers(input);
+pub fn day02_both() {
+    let input = crate::get_days_input("02").unwrap();
+    let reports = crate::parse_text_to_numbers(input);
     let mut safe_reports = 0; 
     let mut safe_damp_reports = 0; 
     for line in reports {

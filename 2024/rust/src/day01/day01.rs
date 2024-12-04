@@ -1,10 +1,10 @@
 use std::fs::File;
-use std::io::{self, prelude::*, BufReader};
+use std::io::{prelude::*, BufReader};
 use std::collections::HashMap;
 
-fn main() -> io::Result<()> {
-    let filepath = "../../../problems/day1/input1.txt";
-    let file = File::open(filepath)?;
+pub fn day01_both(){
+    let filepath = "../../problems/day01/input.txt";
+    let file = File::open(filepath).unwrap();
     let reader = BufReader::new(file);
     let mut nums1: Vec<i32> = vec![];
     let mut nums2: Vec<i32> = vec![];
@@ -12,7 +12,7 @@ fn main() -> io::Result<()> {
     let mut sim2 = HashMap::new(); 
 
     for line in reader.lines() {
-        let line = line?; // Extract the line, propagating any errors
+        let line = line.unwrap(); // Extract the line, propagating any errors
         let numbers: Vec<&str> = line.trim().split_whitespace().collect();
 
         if numbers.len() == 2 {
@@ -47,5 +47,4 @@ fn main() -> io::Result<()> {
     println!("the diff is: {}", sum);
     println!("the similarity is: {}", similarity);
 
-    Ok(())
 }
