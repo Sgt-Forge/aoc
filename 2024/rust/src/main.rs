@@ -1,6 +1,7 @@
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 
 use std::fs::File;
 use std::io::{self, prelude::*, BufReader};
@@ -8,9 +9,10 @@ use std::io::{self, prelude::*, BufReader};
 use day01::day01::day01_both;
 use day02::day02::day02_both;
 use day03::day03::{day03_part1, day03_part2};
+use day04::day04::{day04_part1, day04_part2};
 
 fn get_days_input(day: &str) -> io::Result<io::Lines<BufReader<File>>> {
-    let filepath = format!("../../problems/day{}/input.txt", day);
+    let filepath = format!("../../../problems/day{}/input.txt", day);
     let file = File::open(filepath)?;
     Ok(BufReader::new(file).lines())
 }
@@ -33,4 +35,6 @@ fn main() {
     _ = day02_both();
     day03_part1();
     day03_part2();
+    day04_part1();
+    day04_part2();
 }

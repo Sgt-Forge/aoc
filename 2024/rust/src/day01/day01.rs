@@ -3,7 +3,7 @@ use std::io::{prelude::*, BufReader};
 use std::collections::HashMap;
 
 pub fn day01_both(){
-    let filepath = "../../problems/day01/input.txt";
+    let filepath = "../../../problems/day01/input.txt";
     let file = File::open(filepath).unwrap();
     let reader = BufReader::new(file);
     let mut nums1: Vec<i32> = vec![];
