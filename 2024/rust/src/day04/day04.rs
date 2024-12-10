@@ -68,7 +68,7 @@ pub fn day04_part1() {
                     count += 1;
                 }
                 // diag down right
-                if grid[r+1][c+1] == 'M' && grid[r+2][c+1] == 'A' && grid[r+3][c+1] == 'S' {
+                if grid[r+1][c+1] == 'M' && grid[r+2][c+2] == 'A' && grid[r+3][c+3] == 'S' {
                     count += 1;
                 }
                 // diag down left
@@ -84,8 +84,46 @@ pub fn day04_part1() {
 
 pub fn day04_part2() {
     println!("==========================================================");
-    println!("\t\tday04 - part 1");
+    println!("\t\tday04 - part 2");
     println!("==========================================================\n\n");
 
+    let grid = build_grid();
+    let mut count = 0;
+
+    for r in 3..grid.len()-3 { 
+         for c in 3..grid[r].len()-3 {
+             if grid[r][c] == 'A' { 
+                // M . S
+                // . A .
+                // M . S
+                if grid[r-1][c-1] == 'M' && grid[r-1][c+1] == 'S' && 
+                    grid[r+1][c-1] == 'M' && grid[r+1][c+1] == 'S' {
+                    count += 1;
+                } 
+                // S . M
+                // . A .
+                // S . M
+                if grid[r-1][c-1] == 'S' && grid[r-1][c+1] == 'M' && 
+                    grid[r+1][c-1] == 'S' && grid[r+1][c+1] == 'M' {
+                    count += 1;
+                } 
+                // S . S
+                // . A .
+                // M . M
+                if grid[r-1][c-1] == 'S' && grid[r-1][c+1] == 'S' && 
+                    grid[r+1][c-1] == 'M' && grid[r+1][c+1] == 'M' {
+                    count += 1;
+                } 
+                // M . M
+                // . A .
+                // S . S
+                if grid[r-1][c-1] == 'M' && grid[r-1][c+1] == 'M' && 
+                    grid[r+1][c-1] == 'S' && grid[r+1][c+1] == 'S' {
+                    count += 1;
+                } 
+             }
+         }
+     }
+    println!("day4 part2 count: {}", count);
 
 }
